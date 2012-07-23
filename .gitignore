@@ -6,6 +6,9 @@
 # Compiled Dynamic libraries
 *.so
 
+# OS environment
+*.user
+
 # Compiled Static libraries
 *.lai
 *.la
