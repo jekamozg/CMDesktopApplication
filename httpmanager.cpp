@@ -6,6 +6,10 @@ HttpManager::HttpManager(QObject * parent, QString login, QString password, QStr
     this->host = host;
     this->login = login;
     this->password = password;
+
+    connect(this->manager, SIGNAL(finished(QNetworkReply*)),
+            this, SLOT(reply(QNetworkReply*)));
+
 }
 
 void HttpManager::request(QString path, QVariantMap map) {
@@ -28,22 +32,24 @@ void HttpManager::request(QString path, QVariantMap map) {
 }
 
 void HttpManager::reply(QNetworkReply *reply) {
-//    QString json = reply->readAll();
-
-//    using namespace QtJson;
-
-//    bool ok;
-//    //json is a QString containing the JSON data
-//    QVariantMap result = Json::parse(json, ok).toMap();
-
-//    qDebug()<<"DATA\n"<<result;
-//    qDebug()<<"HEADERS\n"<<reply->rawHeaderPairs();
+    qDebug()<<"reply_error"<<reply->errorString();
+    qDebug()<<"log"<<"qwerty";
 }
 
 
 void HttpManager::setHeaders(QNetworkRequest & request, const int size) {
-    request.setRawHeader("Accept", "*/*");
-    request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
+//    request.setRawHeader("host", "symfony.loc");
+
+//    request.setRawHeader("accept-charset", "windows-1251,utf-8;q=0.7,*;q=0.3");
+//    request.setRawHeader("accept-encoding", "gzip,deflate,sdch");
+//    request.setRawHeader("accept-language", "ru-RU,ru;q=0.8,en-US;q=0.6,en;q=0.4");
+
+//    request.setRawHeader("user-agent", "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.11 (KHTML, like Gecko) Chrome/20.0.1132.57 Safari/536.11");
+
+//    request.setHeader(QNetworkRequest::ContentLengthHeader, 100);
+
+//    request.setRawHeader("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8");
+
     if (size > 0) {
         request.setHeader(QNetworkRequest::ContentLengthHeader, QVariant(size));
     }
