@@ -10,9 +10,6 @@ HttpManager::HttpManager(QObject * parent, QString login, QString password, QStr
     connect(this->manager, SIGNAL(finished(QNetworkReply*)),
             this, SLOT(reply(QNetworkReply*)));
 
-//    connect(reply, SIGNAL(error(QNetworkReply::NetworkError)),
-//             this, SLOT(slotError(QNetworkReply::NetworkError)));
-
 }
 
 void HttpManager::request(QString path, QVariantMap map) {

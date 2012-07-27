@@ -3,15 +3,25 @@
 
 #include <QtGui>
 
-MainWindow::MainWindow(QWidget *parent) :
+MainWindow::MainWindow(HttpManager *httpManager, QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
+    this->http = httpManager;
+    http->request("/desktop/");
+
     //Timer
     timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(screenShotAction()));
     //
     ui->setupUi(this);
+
+    connect(http->manager, SIGNAL(finished(QNetworkReply*)),
+            this, SLOT(replyHttp(QNetworkReply*)));
+}
+
+void MainWindow::replyHttp(QNetworkReply *reply) {
+    qDebug()<<"MainWindowRequest"<<reply->readAll();
 }
 
 MainWindow::~MainWindow()
@@ -33,7 +43,6 @@ void MainWindow::updateScreenshotLabel()
 
 void MainWindow::on_start_stop_toggled(bool checked)
 {
-
     if(checked) {
         ui->start_stop->setText("Stop");
         timer->start(1000);
@@ -43,3 +52,4 @@ void MainWindow::on_start_stop_toggled(bool checked)
         timer->stop();
     }
 }
+

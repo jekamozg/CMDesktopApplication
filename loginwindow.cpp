@@ -50,10 +50,13 @@ void LoginWindow::replyHttp(QNetworkReply *reply) {
     //json is a QString containing the JSON data
     QVariantMap result = Json::parse(json, ok).toMap();
     if(result.contains("id")) {
-        MainWindow *mainWindow = new MainWindow();
+        MainWindow *mainWindow = new MainWindow(http);
         mainWindow->show();
-        this->close();
         qDebug()<<"accept";
+        this->close();
+        this->disconnect(http->manager, SIGNAL(finished(QNetworkReply*)),
+                         this, SLOT(replyHttp(QNetworkReply*)));
+//        this->~LoginWindow();
     }
     else {
         ui->message->setText("Wrong login or password");
