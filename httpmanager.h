@@ -2,14 +2,13 @@
 #define HTTPMANAGER_H
 
 #include <QObject>
-
 #include <QNetworkAccessManager>
 #include <QNetworkRequest>
 #include <QNetworkReply>
 #include <QUrl>
 #include <QBuffer>
-
 #include <QDebug>
+#include "log.h"
 
 class HttpManager : public QObject
 {

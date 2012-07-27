@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui network
+QT       += core gui network sql
 
 TARGET = CM
 TEMPLATE = app
@@ -14,12 +14,14 @@ SOURCES += main.cpp\
         mainwindow.cpp \
     loginwindow.cpp \
     httpmanager.cpp \
-    qt-json/json.cpp
+    qt-json/json.cpp \
+    log.cpp
 
 HEADERS  += mainwindow.h \
     loginwindow.h \
     httpmanager.h \
-    qt-json/json.h
+    qt-json/json.h \
+    log.h
 
 FORMS    += mainwindow.ui \
     loginwindow.ui

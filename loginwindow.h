@@ -4,6 +4,7 @@
 #include <QDialog>
 #include "mainwindow.h"
 #include "httpmanager.h"
+#include "log.h"
 #include "qt-json/json.h"
 
 namespace Ui {
