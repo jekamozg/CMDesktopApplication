@@ -12,12 +12,21 @@ HttpManager::HttpManager(QObject * parent, QString login, QString password, QStr
 
 }
 
+QString HttpManager::getHost() {
+    return this->host;
+}
+
+QUrl HttpManager::getUrl(QString requestString) {
+    return QUrl(this->getHost()+requestString);
+}
+
 void HttpManager::request(QString path, QVariantMap map) {
     QByteArray postData = "";
     foreach(QString key, map.keys()) {
-        postData.append(key + "=" + encodeBase64(map[key].toString()) + "&");
+        postData.append(key + "=" + QUrl::toPercentEncoding(map[key].toString()) + "&");
     }
-    qDebug()<<"map"<<map.keys();
+//    qDebug()<<"map"<<map;
+//    qDebug()<<"postData"<<postData;
     QNetworkRequest request;
     QBuffer *buffer = new QBuffer(this->parent());
     buffer->setData(postData);
@@ -33,8 +42,8 @@ void HttpManager::reply(QNetworkReply *reply) {
 
 
 void HttpManager::setHeaders(QNetworkRequest & request, const int size) {
-    request.setRawHeader("Content-Type", "text/html");
-    request.setRawHeader("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8");
+    request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
+    request.setRawHeader("Accept", "*/*");
     if (size > 0) {
         request.setHeader(QNetworkRequest::ContentLengthHeader, QVariant(size));
     }

@@ -15,13 +15,25 @@ SOURCES += main.cpp\
     loginwindow.cpp \
     httpmanager.cpp \
     qt-json/json.cpp \
-    log.cpp
+    log.cpp \
+    tasksform.cpp \
+    popuptaskform.cpp \
+    taskformwidget.cpp
 
 HEADERS  += mainwindow.h \
     loginwindow.h \
     httpmanager.h \
     qt-json/json.h \
-    log.h
+    log.h \
+    tasksform.h \
+    popuptaskform.h \
+    taskformwidget.h
 
 FORMS    += mainwindow.ui \
-    loginwindow.ui
+    loginwindow.ui \
+    tasksform.ui \
+    popuptaskform.ui \
+    taskformwidget.ui
+
+RESOURCES += \
+    css.qrc

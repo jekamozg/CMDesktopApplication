@@ -80,7 +80,7 @@ void Log::httpManagerReply(QNetworkReply & reply, QString data) {
 
 void Log::httpManagerLog(QVariantMap map) {
     db.exec(this->insertIntoMap("httpManager", map));
-    qDebug()<<"qwe"<<this->insertIntoMap("httpManager", map);
+//    qDebug()<<"qwe"<<this->insertIntoMap("httpManager", map);
 }
 
 Log::~Log()

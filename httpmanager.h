@@ -23,6 +23,8 @@ public:
     void request(QString path = "", QVariantMap map = QVariantMap());
     void setHeaders(QNetworkRequest &request, const int size = 0);
     QString encodeBase64(QString string);
+    QString getHost();
+    QUrl getUrl(QString requestString);
 signals:
     
 public slots:

@@ -2,25 +2,56 @@
 <ui version="4.0">
  <class>MainWindow</class>
  <widget class="QMainWindow" name="MainWindow">
+  <property name="windowModality">
+   <enum>Qt::NonModal</enum>
+  </property>
+  <property name="enabled">
+   <bool>true</bool>
+  </property>
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>399</width>
-    <height>364</height>
+    <width>777</width>
+    <height>366</height>
    </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">/*QPushButton {
+	width: 100%;
+	height: 100%;
+	color: rgb(255, 255, 255);
+	font: 75 10pt &quot;MS Shell Dlg 2&quot;;
+	border-radius: 5px;
+	background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 rgba(0, 105, 0, 255), stop:1 rgba(0, 0, 0, 255));
+}*/</string>
+  </property>
+  <property name="tabShape">
+   <enum>QTabWidget::Triangular</enum>
+  </property>
   <widget class="QWidget" name="centralWidget">
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
    <widget class="QTabWidget" name="mainTabs">
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>50</y>
+      <y>60</y>
       <width>361</width>
-      <height>251</height>
+      <height>241</height>
      </rect>
     </property>
     <property name="currentIndex">
@@ -56,7 +87,7 @@
       <x>280</x>
       <y>10</y>
       <width>98</width>
-      <height>27</height>
+      <height>41</height>
      </rect>
     </property>
     <property name="text">
@@ -71,10 +102,56 @@
      <rect>
       <x>20</x>
       <y>10</y>
-      <width>211</width>
-      <height>27</height>
+      <width>251</width>
+      <height>41</height>
      </rect>
     </property>
+   </widget>
+   <widget class="QWidget" name="tasksform" native="true">
+    <property name="geometry">
+     <rect>
+      <x>390</x>
+      <y>0</y>
+      <width>391</width>
+      <height>301</height>
+     </rect>
+    </property>
+    <widget class="QTextEdit" name="taskMemo">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>60</y>
+       <width>371</width>
+       <height>191</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="tasks">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>10</y>
+       <width>371</width>
+       <height>41</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QDialogButtonBox" name="taskDialog">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>260</y>
+       <width>181</width>
+       <height>28</height>
+      </rect>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="standardButtons">
+      <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+     </property>
+    </widget>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
@@ -82,8 +159,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>399</width>
-     <height>25</height>
+     <width>777</width>
+     <height>26</height>
     </rect>
    </property>
   </widget>

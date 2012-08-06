@@ -25,12 +25,20 @@ LoginWindow::~LoginWindow()
 
 void LoginWindow::on_loginBox_accepted()
 {
-    QVariantMap postData;
-
-    postData["login"] = ui->login->text();
-    postData["pass"] = ui->pass->text();
-
-    http->request("/desktop/", postData);
+    QPalette *palette = new QPalette();
+    palette->setColor(QPalette::Text,Qt::red);
+    if(ui->login->text() == "") {
+        ui->login->setStyleSheet("border: 1px solid red;");
+    }
+    else if(ui->pass->text() == "") {
+        ui->pass->setStyleSheet("border: 1px solid red;");
+    }
+    else {
+        QVariantMap postData;
+        postData["username"] = ui->login->text();
+        postData["password"] = ui->pass->text();
+        http->request("/desktop/login", postData);
+    }
 }
 
 void LoginWindow::on_loginBox_rejected()
@@ -56,7 +64,7 @@ void LoginWindow::replyHttp(QNetworkReply *reply) {
         this->close();
         this->disconnect(http->manager, SIGNAL(finished(QNetworkReply*)),
                          this, SLOT(replyHttp(QNetworkReply*)));
-//        this->~LoginWindow();
+        //        this->~LoginWindow();
     }
     else {
         ui->message->setText("Wrong login or password");

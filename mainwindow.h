@@ -7,8 +7,10 @@
 #include <QNetworkRequest>
 #include <QPixmap>
 #include <QDebug>
+#include "tasksform.h"
 #include "httpmanager.h"
 #include "log.h"
+#include "qt-json/json.h"
 
 namespace Ui {
 class MainWindow;
@@ -31,6 +33,10 @@ private slots:
     void replyHttp(QNetworkReply *reply);
     void screenShotAction();
     void on_start_stop_toggled(bool checked);
+    void on_projects_activated(const QString &arg1);
+    void on_projects_activated(int index);
+    void on_taskDialog_accepted();
+    void on_taskDialog_rejected();
 };
 
 #endif // MAINWINDOW_H
